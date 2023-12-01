@@ -1,0 +1,44 @@
+Technical Assessment
+Software Engineering
+Type of assessment: Take home task
+Congratulations! You have been selected to participate in a coding
+challenge for the next steps in our interviewing process.
+Please find the instructions below! If you have any questions, please let us know.
+Thank you!
+Task 1
+JavaScript/TypeScript Word Count Challenge
+Objective
+Implement a simple application that reads text content from a file, counts each unique
+word, and prints the output into the console. Please provide the solution in an archive
+together with instructions on how to build and run it.
+Prototype
+The application should be a Node or Deno app written in JavaScript or TypeScript that
+accepts the first argument as a location/path for the file, for example: "node
+word-counter.js /path/to/file". The output should consist of a line for each word, with the
+number of its occurrences in the file.
+If you choose to write your app in TypeScript, you can use ts-node to run TypeScript
+directly in Node without having to compile it down to JavaScript, or you can use Deno,
+which comes with native support for TypeScript.
+Bonus Objectives
+- Have the words in the output sorted alphabetically.
+- Count the same words regardless of the case sensitivity, or padding, for example:
+"hello", "Hello" or " hELLo " (note the leading and trailing spaces), should be
+counted as "hello: 3".
+- Write the app in TypeScript, preferably in strict mode.
+- Write test(s) to verify the correctness of your program, preferably in Jest.
+Skills Assessment & Instructions
+- Please provide the solution in an archive together with instructions on how to
+build it and run it.
+- If you believe that the instructions are not precise and you need to make some
+assumptions please do so but make them clear to us by including them in the
+instructions sent as part of your solution.
+- If you are uneasy about something and would rather ask a question than make an
+assumption then you can always get in touch.
+- The task is simple on purpose - we're sure that apart from applying for this
+position you still have other things to do in life, like your current job for example,
+therefore we don't want to ask you to spend an unnecessarily long time on solving
+complex problems.
+- We are on the other hand interested in seeing what you consider best software
+engineering practices so please ensure that your solution could be considered
+"production-ready" and complete.
+Good luck

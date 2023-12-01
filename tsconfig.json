@@ -1,0 +1,24 @@
+// Based on https://github.com/tsconfig/bases/blob/main/bases/recommended.json
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "esnext",
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/**/*.test.ts", // exclude test files
+    "src/interfaces", // exclude interfaces
+  ],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
+}
