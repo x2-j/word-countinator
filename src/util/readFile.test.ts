@@ -11,7 +11,7 @@ jest.mock('fs', () => ({
   })
 }))
 
-const processExit = jest.spyOn(process, 'exit').mockImplementation()
+const processExit = jest.spyOn(process, 'exit').mockImplementation((number) => { throw new Error('process.exit: ' + number); })
 const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation()
 const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation()
         
@@ -26,9 +26,9 @@ describe('readFile', () => {
     expect(readFile('./examples/hello-world.txt')).toBe('Hello, World!')
   })
 
-  // it('should exit code 1 if the file does not exist', async () => {
+  // it('should exit code 1 if the file does not exist', () => {
   //   readFile('./examples/does-not-exist.txt')
-  //   expect(mockExit).toHaveBeenCalledWith(1)
+  //   // expect(processExit).toHaveBeenCalledWith(1)
   //   expect(consoleErrorSpy).toHaveBeenCalledWith('File "./examples/does-not-exist.txt" not found')
   // })
 
