@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/x2-j/interview-test.git"
+    "url": "git+https://github.com/x2-j/word-countinator.git"
   },
   "author": "John James",
   "license": "ISC",
