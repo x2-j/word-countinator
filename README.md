@@ -4,8 +4,9 @@
 
 Word Countinator is a simple Typescript application that outputs each word from a provided text file in the order of most to least used and how many times it is found. All words are normalised and conform to a strict structure to avoid duplicates - spaces are used to denote a word separation and **it is assumed that a UTF-8 encoded text file (.txt) is provided.**
 
-## Install
+![word-countinator-banner](https://github.com/x2-j/word-countinator/assets/108185965/0010b99b-46de-4da9-997e-53baec0af7a0)
 
+## Install
 Getting Word Countinator up and running is nice and simple. 
 
 ### Make a new directory
@@ -17,7 +18,7 @@ cd <path created above>
 
 ### Clone this repository
 ```bash
-git clone [https://github.com/x2-j/word-countinator.git](https://github.com/x2-j/word-countinator.git) .
+git clone https://github.com/x2-j/word-countinator.git .
 ```
 
 ### Install 
