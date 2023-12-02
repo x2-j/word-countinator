@@ -18,7 +18,6 @@ let store: StoreInterface = {}
 // Get contents of file as string
 const file: string = readFile(filename)
 
-// Redelcare store rather than passing the instance and mutating it
 store = splitWords(file)
 
 let arr: [string, number][] = []
