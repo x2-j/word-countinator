@@ -21,15 +21,14 @@ const file: string = readFile(filename)
 // Redelcare store rather than passing the instance and mutating it
 store = splitWords(file)
 
-// Sort the store by count in descending order or alphabetically
 let arr: [string, number][] = []
-// If the last argument is --numeric, sort by count
+
 if (process.argv[3] === '--alpha') {
   arr = sortArrayByWord(store)
 } else {
   arr = sortArray(store)
 }
+
 for (const [word, count] of arr) {
-  // Log the results!
   console.log(`${word}: ${count}`)
 }
