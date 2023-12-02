@@ -79,4 +79,4 @@ ts-node src/index.ts examples/test-requirements.txt
 - It would have been nice to add the configuration for adding it to the NPM repository.
 - Interfaces in dist should be removed.
 - index.ts could do with a refactor to move more code into modules for both testing and cleaning up the entry point file.
-- store reference in index.js is reassigned but in some modules, the property is passed causing inconsistency in approach.
+- The store reference in index.js is reassigned but in some modules, the property is passed causing inconsistency in approach.
