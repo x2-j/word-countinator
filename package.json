@@ -1,6 +1,6 @@
 {
   "name": "adaptavist-test",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Programming isn't about what you know; it's about what you can figure out. - Chris Pine (Learn to Program)",
   "main": "src/index.ts",
   "scripts": {
