@@ -10,7 +10,7 @@ import { readFileSync } from 'fs'
  * @param filename - The path to the file to be read.
  * @returns The contents of the file as a string.
  */
-export function readFile (filename: string): string | void {
+export function readFile (filename: string): string {
   try {
     // Read the provided filepath
     return readFileSync(filename, 'utf8')
