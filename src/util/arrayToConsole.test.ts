@@ -1,8 +1,10 @@
+import { StoreArray } from '../interfaces/store'
+
 import arrayToConsole from './arrayToConsole'
 
 describe('arrayToConsole', () => {
   it('should output the given array to the console as rows of "word: count"', () => {
-    const arr = [['word', 1], ['word', 2], ['word', 3]]
+    const arr: StoreArray = [['word', 1], ['word', 2], ['word', 3]]
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {})
     arrayToConsole(arr)
     expect(consoleSpy).toHaveBeenCalledWith('word: 1')

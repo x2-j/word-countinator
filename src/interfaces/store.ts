@@ -33,6 +33,5 @@ export interface StoreObject {
  * ]
  * ```
  */
-export interface StoreArray extends Iterable<[string, number]> {
-  [Symbol.iterator](): Iterator<[string, number]>
+export interface StoreArray extends Array<[string, number]> {
 }
