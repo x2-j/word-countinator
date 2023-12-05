@@ -7,7 +7,7 @@ import { readFileSync } from 'fs'
  * @param filename - The path to the file to be read.
  * @returns The contents of the file as a string.
  */
-export default function readFile (filename: string): string {
+export function readFile (filename: string): string {
   try {
     // Read the provided filepath
     return readFileSync(filename, 'utf8')
@@ -24,4 +24,16 @@ export default function readFile (filename: string): string {
     // exit the process with exit code 1
     process.exit(1)
   }
+}
+
+
+export function getFileNameFromArgs (): string {
+  // Get the third argument from the command line as filename
+  const filename: string = process.argv[2]
+  
+  if (!filename) { // Remove filename.length as it is redundant here
+    console.error('Please provide a filename "node-ts src/index.ts <filename>"')
+    process.exit(1)
+  }
+  return filename
 }

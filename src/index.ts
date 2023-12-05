@@ -1,4 +1,4 @@
-import StoreInterface from './interfaces/store'
+import { StoreObject, StoreArray } from '@interface/store'
 
 import readFile from './util/readFile'
 import splitWords from './util/splitWords'
@@ -13,21 +13,26 @@ if (!filename || filename.length === 0) {
 }
 
 // Start a store to cache each word and it's count
-let store: StoreInterface = {}
+let store: StoreObject = {}
 
 // Get contents of file as string
 const file: string = readFile(filename)
 
 store = splitWords(file)
 
-let arr: [string, number][] = []
+let storeArray: StoreArray = []
 
 if (process.argv[3] === '--alpha') {
-  arr = sortArrayByWord(store)
+  storeArray = sortArrayByWord(store)
 } else {
-  arr = sortArray(store)
+  storeArray = sortArray(store)
 }
 
-for (const [word, count] of arr) {
+for (const [word, count] of storeArray) {
   console.log(`${word}: ${count}`)
 }
+
+
+
+////////
+
