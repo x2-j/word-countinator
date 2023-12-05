@@ -27,8 +27,7 @@ function readFile(filename) {
             // if any other error occured
             console.error(`Error reading "${filename}"`);
         }
-        // exit the process with exit code 1
-        process.exit(1);
+        process.exit(0);
     }
 }
 exports.readFile = readFile;

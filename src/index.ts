@@ -8,6 +8,6 @@ import arrayToConsole from '@util/arrayToConsole'
 const fileName: string = getFileNameFromArgs()
 const fileContents: string = readFile(fileName)
 const wordObjectStore: StoreObjectInterface = splitWords(fileContents)
-const storeArray: StoreArrayInterface = sortByArg(wordObjectStore, process.argv[3])
+const storeArray: StoreArrayInterface = sortByArg(wordObjectStore, (process.argv[3] || 'count'))
 
 arrayToConsole(storeArray)

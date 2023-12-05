@@ -10,5 +10,5 @@ const arrayToConsole_1 = __importDefault(require("@util/arrayToConsole"));
 const fileName = (0, readFile_1.getFileNameFromArgs)();
 const fileContents = (0, readFile_1.readFile)(fileName);
 const wordObjectStore = (0, splitWords_1.default)(fileContents);
-const storeArray = (0, sortArray_1.sortByArg)(wordObjectStore, process.argv[3]);
+const storeArray = (0, sortArray_1.sortByArg)(wordObjectStore, (process.argv[3] || 'count'));
 (0, arrayToConsole_1.default)(storeArray);
