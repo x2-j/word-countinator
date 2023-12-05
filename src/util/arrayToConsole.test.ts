@@ -1,6 +1,6 @@
-import { StoreArray } from '../interfaces/store'
+import { StoreArray } from '@interface/store'
 
-import arrayToConsole from './arrayToConsole'
+import arrayToConsole from '@util/arrayToConsole'
 
 describe('arrayToConsole', () => {
   it('should output the given array to the console as rows of "word: count"', () => {
