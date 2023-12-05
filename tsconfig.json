@@ -4,8 +4,6 @@
     "target": "esnext",
     "outDir": "./dist",
     "baseUrl": "./src",
-    // https://www.typescriptlang.org/docs/handbook/modules/reference.html#paths
-    // I had not put /* at the end of the lookup path, so it was not working.
     "paths": {
       "@interface/*": ["interfaces/*"],
       "@util/*": ["util/*"]
@@ -13,6 +11,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
     "module": "CommonJS"
   },
