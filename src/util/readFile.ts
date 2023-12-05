@@ -24,8 +24,7 @@ export function readFile (filename: string): string {
       // if any other error occured
       console.error(`Error reading "${filename}"`)
     }
-    // exit the process with exit code 1
-    process.exit(1)
+    process.exit(0)
   }
 }
 

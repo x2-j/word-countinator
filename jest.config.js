@@ -2,10 +2,7 @@ const { compilerOptions } = require('./tsconfig.json')
 const moduleMapper = () => {
   const mapped = {}
   Object.entries(compilerOptions.paths).forEach(([key, value]) => {
-    const lookup = key.replace('/*', '/(.*)$')
-    // "@interface/*": ["interfaces/*"],
-    // @interface/(.*)$: "/src/interfaces/$1"
-    mapped[lookup] = value[0].replace('/*', '/$1')
+    mapped[key.replace('/*', '/(.*)$')] = value[0].replace('/*', '/$1')
   })
   return mapped
 }
