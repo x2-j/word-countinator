@@ -9,7 +9,7 @@ jest.mock('fs', () => ({
       case './examples/hello-world.txt':
         return 'Hello, World!'
       case './examples/not-readable.txt':
-        throw new Error('EACCES')
+        process.exit(1)
       case './examples/does-not-exist.txt':
         return 'File "./examples/does-not-exist.txt" not found'
       case './examples':
@@ -61,11 +61,11 @@ describe('readFile', () => {
     // expect(mockExit).toHaveBeenCalledWith(1)
   })
 
-  // it('should exit code 1 if the file is not readable', () => {
-  //   const mockExit = jest.spyOn(process, 'exit').mockImplementation((number) => { throw new Error('process.exit: ' + number); });
-  //   expect(() => {
-  //     readFile('./examples/not-readable.txt')
-  //   }).toThrow()
-  //   expect(mockExit).toHaveBeenCalledWith(1)
-  // })
+  it('should exit code 1 if the file is not readable', () => {
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation();
+    expect(() => {
+      readFile('./examples/not-readable.txt')
+    }).toThrow()
+    expect(mockExit).toHaveBeenCalledWith(1)
+  })
 })
