@@ -33,5 +33,4 @@ export interface StoreObject {
  * ]
  * ```
  */
-export interface StoreArray extends Array<[string, number]> {
-}
+export interface StoreArray extends Array<[string, number]> {}

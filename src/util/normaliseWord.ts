@@ -8,5 +8,5 @@
  * @returns The normalised word.
  */
 export default function normaliseWord(word: string): string {
-  return word.replace(/[^a-zA-Z']/g, '').toLowerCase()
+  return word.toLowerCase()
 }

@@ -1,6 +1,5 @@
 import { StoreObject } from '@interface/store'
 
-import normaliseWord from '@util/normaliseWord'
 import storeNormalised from '@util/storeNormalised'
 
 
@@ -12,15 +11,11 @@ import storeNormalised from '@util/storeNormalised'
  */
 export default function splitWords(str: string): StoreObject {
   const store: StoreObject = {}
-  const words: string[] = str.split(/\W+/) // Split on non-word characters
-
+  const words: string[] = str.split(/[^A-Za-z']/) // Split on non-word characters
   for (const word of words) {
-    const normalised = normaliseWord(word)
-    // If the word is empty or only contains numbers, don't store it
-    // if (!normalised || normalised.match(/^\d+$/)) {
-    //   return
-    // }
-    storeNormalised(normalised, store)
+    if (word !== '') {
+      storeNormalised(word.toLowerCase(), store)
+    }
   }
   return store
 }
