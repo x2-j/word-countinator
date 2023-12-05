@@ -40,11 +40,8 @@ if (!filename || filename.length === 0) {
 let store = {};
 // Get contents of file as string
 const file = (0, readFile_1.default)(filename);
-// Redelcare store rather than passing the instance and mutating it
 store = (0, splitWords_1.default)(file);
-// Sort the store by count in descending order or alphabetically
 let arr = [];
-// If the last argument is --numeric, sort by count
 if (process.argv[3] === '--alpha') {
     arr = (0, sortArray_1.sortArrayByWord)(store);
 }
@@ -52,6 +49,5 @@ else {
     arr = (0, sortArray_1.default)(store);
 }
 for (const [word, count] of arr) {
-    // Log the results!
     console.log(`${word}: ${count}`);
 }

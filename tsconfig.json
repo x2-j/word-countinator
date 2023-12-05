@@ -9,15 +9,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "module": "CommonJS",
-    "resolveJsonModule": true,
+    "module": "CommonJS"
   },
-  "include": [
-    "src/**/*"
-  ],
   "exclude": [
-    "src/**/*.test.ts", // exclude test files
-    "src/interfaces", // exclude interfaces
+    "src/util/*.test.ts"
   ],
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"
