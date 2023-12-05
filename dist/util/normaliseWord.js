@@ -10,6 +10,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @returns The normalised word.
  */
 function normaliseWord(word) {
-    return word.replace(/[^\w']/g, '').toLowerCase();
+    return word.replace(/[^a-zA-Z']/g, '').toLowerCase();
 }
 exports.default = normaliseWord;

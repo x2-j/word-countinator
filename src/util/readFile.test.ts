@@ -1,5 +1,5 @@
 // import process from 'process'
-import readFile from "./readFile"
+import { readFile } from "./readFile"
 
 // Mock fs.readFileSync
 // Return known values for known inputs and throw errors for anything else

@@ -11,6 +11,8 @@ module.exports =  {
     "indent": ["error", 2],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
+    "no-trailing-spaces": "error",
+    "eol-last": ["error", "always"],
     "tsdoc/syntax": "warn",
   },
   plugins: [
@@ -25,6 +27,7 @@ module.exports =  {
     "node_modules",
     "dist",
     "src/**/*.test.ts",
-    ".eslintrc.js"
+    ".eslintrc.js",
+    "jest.config.js"
   ]
 }

@@ -1,9 +1,10 @@
-import { StoreObject, StoreArray } from 'interfaces/store'
+import { StoreObject, StoreArray } from '@interface/store'
+
 
 /**
  * Sorts the given store object by count and returns an array of [word, count] tuples.
  * The sorting is done in descending order of count, with words sorted alphabetically for each count.
- * 
+ *
  * @param store - The store object containing words as keys and their corresponding counts as values.
  * @returns An array of [word, count] tuples sorted by count and word.
  */
@@ -21,20 +22,21 @@ export default function sortArray(store: StoreObject): StoreArray {
   // Reverse the cache so the highest count is first
   for (const [count, words] of Object.entries(cache).reverse()) {
     words.sort((a, b) => {
-      // Compare the words alphabetically for each count object to ensure alphabetical order
+      // Compare the words alphabetically for each count object
       return a.localeCompare(b)
     })
     for (const word of words) {
-      arr.push([word, parseInt(count)])
+      Array.prototype.push.apply(arr, [[word, parseInt(count)]])
     }
   }
   return arr
 }
 
+
 /**
  * Sorts the given store object by word and returns an array of [word, count] tuples.
  * The sorting is done alphabetically by word.
- * 
+ *
  * @param store - The store object containing words as keys and their corresponding counts as values.
  * @returns An array of [word, count] tuples sorted by word.
  */
@@ -43,4 +45,22 @@ export function sortArrayByWord(store: StoreObject): StoreArray {
     // Compare the words alphabetically
     return a[0].localeCompare(b[0])
   })
+}
+
+
+/**
+ * Sorts the given store object by the given argument and returns an array of [word, count] tuples.
+ *
+ * @remarks
+ * The sorting is done in descending order of count, with words sorted alphabetically for each count.
+ *
+ * @param store - The store object containing words as keys and their corresponding counts as values.
+ * @param arg - The argument to sort by.
+ * @returns An array of [word, count] tuples sorted by count and word.
+ */
+export function sortByArg(store: StoreObject, arg: string): StoreArray {
+  if (['--a', '--alpha', '--alphabetical'].includes(arg)) {
+    return sortArrayByWord(store)
+  }
+  return sortArray(store)
 }

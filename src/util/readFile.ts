@@ -1,11 +1,12 @@
 import { readFileSync } from 'fs'
 
+
 /**
- * Reads the contents of a file and returns it as a string. 
- * 
+ * Reads the contents of a file and returns it as a string.
+ *
  * @remarks
  * If the file does not exist, the process will exit with exit code 1
- * 
+ *
  * @param filename - The path to the file to be read.
  * @returns The contents of the file as a string.
  */
@@ -31,11 +32,11 @@ export function readFile (filename: string): string {
 
 /**
  * Retrieves the filename from the command line arguments.
- * 
+ *
  * @remarks
  * If no filename is provided or the filename does not have a .txt extension,
  * the process will exit with exit code 9 (Invalid Argument).
- * 
+ *
  * @returns The filename as a string, or void if an error occurred.
  */
 export function getFileNameFromArgs (): string {
