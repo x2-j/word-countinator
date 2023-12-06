@@ -9,27 +9,17 @@ import { StoreObject, StoreArray } from '@interface/store'
  * @returns An array of [word, count] tuples sorted by count and word.
  */
 export default function sortArray(store: StoreObject): StoreArray {
-  // Create a cache of the words by count using count as key and array of instances
-  const cache: { [key: number]: string[] } = {}
-  for (const [word, count] of Object.entries(store)) {
-    if (!cache[count]) {
-      cache[count] = []
+  return Object.entries(store).sort(
+    (a, b) => {
+      // If the count is the same then check word instead
+      if (a[1] === b[1]) {
+        // Can get speed up with collator/intl.collator if language matters
+        return b[0].localeCompare(a[0])
+      }
+      // Count is different so compare by count
+      return a[1] - b[1]
     }
-    cache[count].push(word)
-  }
-  // Start output array
-  const arr: StoreArray = []
-  // Reverse the cache so the highest count is first
-  for (const [count, words] of Object.entries(cache).reverse()) {
-    words.sort((a, b) => {
-      // Compare the words alphabetically for each count object
-      return a.localeCompare(b)
-    })
-    for (const word of words) {
-      Array.prototype.push.apply(arr, [[word, parseInt(count)]])
-    }
-  }
-  return arr
+  ).reverse()
 }
 
 

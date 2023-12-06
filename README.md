@@ -2,9 +2,7 @@
 
 ![NODE CI](https://github.com/x2-j/Word-Countinator/actions/workflows/tests.yml/badge.svg)
 
-Word Countinator is a simple Typescript application that outputs each word from a provided text file in the order of most to least used and how many times it is found. All words are normalised and conform to a strict structure to avoid duplicates - spaces are used to denote a word separation and **it is assumed that a UTF-8 encoded text file (.txt) less than 300mb is provided.**
-
-A file limit of roughly 500mb is theoretically possible however my tests have only worked as far as 300mb. This could be a configuration limitation on my local environment (memory limit maybe).
+Word Countinator is a simple Typescript application that outputs each word from a provided text file in the order of most to least used and how many times it is found. All words are normalised and conform to a strict structure to avoid duplicates - spaces are used to denote a word separation and **it is assumed that a UTF-8 encoded text file (.txt) is provided**, the size that can be evaluated will depend on your NodeJS memory allocation - this will likely be 500mb +/-
 
 ![word-countinator-banner](https://github.com/x2-j/word-countinator/assets/108185965/0010b99b-46de-4da9-997e-53baec0af7a0)
 
