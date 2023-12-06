@@ -1,5 +1,5 @@
-// import process from 'process'
-import readFile from "./readFile"
+import { readFile, getFileNameFromArgs } from "./readFile"
+
 
 // Mock fs.readFileSync
 // Return known values for known inputs and throw errors for anything else
@@ -9,33 +9,20 @@ jest.mock('fs', () => ({
       case './examples/hello-world.txt':
         return 'Hello, World!'
       case './examples/not-readable.txt':
-        throw new Error('EACCES')
+        console.error('Error reading "./examples/not-readable.txt"')
+        process.exit(0)
       case './examples/does-not-exist.txt':
-        return 'File "./examples/does-not-exist.txt" not found'
+        console.error('File "./examples/does-not-exist.txt" not found')
+        process.exit(0)
       case './examples':
-        return 'Error reading "./examples"'
+        console.error('Error reading "./examples"')
+        process.exit(0)
       default:
         throw new Error('Unknown file')
     }
   })
 }))
 
-/**
- * Mocking process and listening for calls to process.exit allows us to test that the process exits with the correct exit code
- * however despite feeling that this approach is correct the expect(mockExit).toHaveBeenCalledWith(1) assertion fails.
- * 
- * My understanding is that jest.mock... is replacing/intercepting calls to process.exit with a mock function that tracks calls to it.
- * I am then using jest.spyOn to spy on the mock function and replace it with an implementation that throws an error however the
- * call is never seen by the spy.
- */
-
-jest.mock('process', () => ({
-  exit: jest.fn((number: number) => {
-    // debugger 
-    // replicate the behaviour of process.exit
-    throw new Error('process.exit: ' + number) 
-  })
-}))
         
 describe('readFile', () => {
   beforeEach(() => {
@@ -49,23 +36,56 @@ describe('readFile', () => {
   })
 
   it('should exit code 1 if the file does not exist', () => {
-    // const mockExit = jest.spyOn(process, 'exit')
-    expect(readFile('./examples/does-not-exist.txt')).toBe('File "./examples/does-not-exist.txt" not found')
-    // debugger
-    // expect(mockExit).toHaveBeenCalledWith(1)
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation()
+    const mockConsoleError = jest.spyOn(console, 'error').mockImplementation()
+    readFile('./examples/does-not-exist.txt')
+    expect(mockExit).toHaveBeenCalledWith(0)
+    expect(mockConsoleError).toHaveBeenCalledWith('File "./examples/does-not-exist.txt" not found')
   })
 
   it('should exit code 1 if the file is a directory', () => {
-    // const mockExit = jest.spyOn(process, 'exit')
-    expect(readFile('./examples')).toBe('Error reading "./examples"')
-    // expect(mockExit).toHaveBeenCalledWith(1)
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation()
+    const mockConsoleError = jest.spyOn(console, 'error').mockImplementation()
+    readFile('./examples')
+    expect(mockExit).toHaveBeenCalledWith(0)
+    expect(mockConsoleError).toHaveBeenCalledWith('Error reading "./examples"')
   })
 
-  // it('should exit code 1 if the file is not readable', () => {
-  //   const mockExit = jest.spyOn(process, 'exit').mockImplementation((number) => { throw new Error('process.exit: ' + number); });
-  //   expect(() => {
-  //     readFile('./examples/not-readable.txt')
-  //   }).toThrow()
-  //   expect(mockExit).toHaveBeenCalledWith(1)
-  // })
+  it('should exit code 1 if the file is not readable', () => {
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation()
+    const mockConsoleError = jest.spyOn(console, 'error').mockImplementation()
+    readFile('./examples/not-readable.txt')
+    expect(mockExit).toHaveBeenCalledWith(0)
+    expect(mockConsoleError).toHaveBeenCalledWith('Error reading "./examples/not-readable.txt"')
+  })
+})
+
+
+describe('getFileNameFromArgs', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('should return the filename if it is provided and has a .txt extension', () => {
+    process.argv = ['', '', './examples/hello-world.txt']
+    expect(getFileNameFromArgs()).toBe('./examples/hello-world.txt')
+  })
+
+  it('should exit code 9 if no filename is provided', () => {
+    process.argv = ['', '']
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation()
+    const mockConsoleError = jest.spyOn(console, 'error').mockImplementation()
+    getFileNameFromArgs()
+    expect(mockExit).toHaveBeenCalledWith(9)
+    expect(mockConsoleError).toHaveBeenCalledWith('Please provide a filename "node-ts src/index.ts <filename>"')
+  })
+
+  it('should exit code 9 if the filename does not have a .txt extension', () => {
+    process.argv = ['', '', './examples/hello-world']
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation()
+    const mockConsoleError = jest.spyOn(console, 'error').mockImplementation()
+    getFileNameFromArgs()
+    expect(mockExit).toHaveBeenCalledWith(9)
+    expect(mockConsoleError).toHaveBeenCalledWith('Please provide a filename with the .txt extension')
+  })
 })

@@ -1,33 +1,13 @@
-import StoreInterface from './interfaces/store'
+import { StoreObject as StoreObjectInterface, StoreArray as StoreArrayInterface } from '@interface/store'
 
-import readFile from './util/readFile'
-import splitWords from './util/splitWords'
-import sortArray, { sortArrayByWord } from './util/sortArray'
+import { readFile, getFileNameFromArgs } from '@util/readFile'
+import splitWords from '@util/splitWords'
+import { sortByArg } from '@util/sortArray'
+import arrayToConsole from '@util/arrayToConsole'
 
-// Get the third argument from the command line as filename
-const filename: string = process.argv[2]
-// If no filename is provided, log an error and exit the process
-if (!filename || filename.length === 0) {
-  console.error('Please provide a filename "node-ts src/index.ts <filename>"')
-  process.exit(1)
-}
+const fileName: string = getFileNameFromArgs()
+const fileContents: string = readFile(fileName)
+const wordObjectStore: StoreObjectInterface = splitWords(fileContents)
+const storeArray: StoreArrayInterface = sortByArg(wordObjectStore, (process.argv[3] || 'count'))
 
-// Start a store to cache each word and it's count
-let store: StoreInterface = {}
-
-// Get contents of file as string
-const file: string = readFile(filename)
-
-store = splitWords(file)
-
-let arr: [string, number][] = []
-
-if (process.argv[3] === '--alpha') {
-  arr = sortArrayByWord(store)
-} else {
-  arr = sortArray(store)
-}
-
-for (const [word, count] of arr) {
-  console.log(`${word}: ${count}`)
-}
+arrayToConsole(storeArray)

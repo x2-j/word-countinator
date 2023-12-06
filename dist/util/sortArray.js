@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sortArrayByWord = void 0;
+exports.sortByArg = exports.sortArrayByWord = void 0;
 /**
  * Sorts the given store object by count and returns an array of [word, count] tuples.
  * The sorting is done in descending order of count, with words sorted alphabetically for each count.
@@ -22,11 +22,11 @@ function sortArray(store) {
     // Reverse the cache so the highest count is first
     for (const [count, words] of Object.entries(cache).reverse()) {
         words.sort((a, b) => {
-            // Compare the words alphabetically for each count object to ensure alphabetical order
+            // Compare the words alphabetically for each count object
             return a.localeCompare(b);
         });
         for (const word of words) {
-            arr.push([word, parseInt(count)]);
+            Array.prototype.push.apply(arr, [[word, parseInt(count)]]);
         }
     }
     return arr;
@@ -46,3 +46,20 @@ function sortArrayByWord(store) {
     });
 }
 exports.sortArrayByWord = sortArrayByWord;
+/**
+ * Sorts the given store object by the given argument and returns an array of [word, count] tuples.
+ *
+ * @remarks
+ * The sorting is done in descending order of count, with words sorted alphabetically for each count.
+ *
+ * @param store - The store object containing words as keys and their corresponding counts as values.
+ * @param arg - The argument to sort by.
+ * @returns An array of [word, count] tuples sorted by count and word.
+ */
+function sortByArg(store, arg) {
+    if (['--a', '--alpha', '--alphabetical'].includes(arg)) {
+        return sortArrayByWord(store);
+    }
+    return sortArray(store);
+}
+exports.sortByArg = sortByArg;
